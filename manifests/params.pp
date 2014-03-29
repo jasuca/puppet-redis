@@ -13,7 +13,7 @@
 # Copyright 2012 Thomas Van Doren, unless otherwise noted.
 #
 class redis::params {
-  $version = '2.6.13'
+  $version = '2.8.8'
   $redis_port = '6379'
   $redis_bind_address = false
   $redis_src_dir = '/opt/redis-src'

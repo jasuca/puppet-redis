@@ -63,7 +63,7 @@ class redis (
   }
 
   exec { 'get-redis-pkg':
-    command => "/usr/bin/wget --output-document ${redis_pkg} http://redis.googlecode.com/files/${redis_pkg_name}",
+    command => "/usr/bin/wget --output-document ${redis_pkg} http://download.redis.io/releases/${redis_pkg_name}",
     unless  => "/usr/bin/test -f ${redis_pkg}",
     require => File[$redis_src_dir],
   }
@@ -79,6 +79,7 @@ class redis (
     unless  => "test -f ${redis_src_dir}/Makefile",
     require => Exec['get-redis-pkg'],
   }
+  # (todo): this unless not working to upgrade redis server
   exec { 'install-redis':
     command => "make && make install PREFIX=${redis_bin_dir}",
     cwd     => $redis_src_dir,
